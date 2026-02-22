@@ -46,3 +46,12 @@
 4. **运行应用**
    ```bash
    python run.py
+
+## 🔮 未来计划
+·支持全文搜索
+·OPML 导入/导出
+·多用户支持
+·暗色模式
+
+## 🤝 贡献
+欢迎提交 Issue 或 Pull Request。
