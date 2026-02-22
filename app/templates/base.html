@@ -30,6 +30,22 @@
         html {
             overflow-y: scroll;
         }
+        .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;  /* 按钮间距 */
+        }
+        @media (max-width: 576px) {
+            .card {
+            margin: 10px 0;
+            }
+            .btn-group {
+            flex-direction: column;  /* 按钮竖直排列 */
+            }
+            .btn-group .btn {
+            width: 100%;  /* 按钮占满宽度 */
+            }
+}
     </style>
 </head>
 <body>
