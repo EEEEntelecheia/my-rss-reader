@@ -1,11 +1,11 @@
 # app/__init__.py
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 import atexit
-
-from app.utils.feed_fetcher import fetch_all_feeds
 
 # 初始化扩展（先不绑定 app）
 db = SQLAlchemy()
@@ -29,6 +29,9 @@ def create_app(config_object=None):
     if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
         # 避免 Flask 调试模式下的双重启动
         scheduler = BackgroundScheduler()
+
+        from app.utils.feed_fetcher import fetch_all_feeds
+
         scheduler.add_job(
             func=lambda: app.app_context().push() or fetch_all_feeds(),
             trigger=IntervalTrigger(hours=1),
