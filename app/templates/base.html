@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}我的 RSS 阅读器{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <!-- 先用最简单的样式，后面再换好看的 -->
     <style>
         body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
@@ -12,6 +13,23 @@
         .article-meta { color: #666; font-size: 0.9em; }
         a { text-decoration: none; color: #0066cc; }
         a:hover { text-decoration: underline; }
+        /* 让图片最大不超过父容器的宽度，高度自适应 */
+        .article-summary img,
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* 避免图片底部出现多余空隙 */
+        }
+        /* 限制卡片内所有图片的最大宽度不超过父容器 */
+        .card img {
+        max-width: 100%;
+        height: auto;
+        display: block;       /* 避免图片底部产生多余空隙 */
+        border-radius: 4px;   /* 可选，加点圆角更好看 */
+        }
+        html {
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
@@ -19,7 +37,7 @@
         <h1>📰 我的 RSS 阅读器</h1>
         <nav>
             <a href="{{ url_for('main.index') }}">首页</a> |
-            <a href="{{ url_for('main.articles') }}">所有文章</a> |
+<!--            <a href="{{ url_for('main.articles') }}">所有文章</a> |-->
             <a href="{{ url_for('main.feeds') }}">我的订阅源</a>
         </nav>
     </header>

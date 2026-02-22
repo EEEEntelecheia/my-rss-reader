@@ -9,8 +9,25 @@ main_bp = Blueprint('main', __name__)
 # 首页
 @main_bp.route('/')
 def index():
-    articles = Article.query.order_by(Article.published.desc()).all()
-    return render_template('index.html', articles=articles)
+    # 文章列表
+    # 获取当前页码，默认为 1
+    page = request.args.get('page', 1, type=int)
+    # 每页显示 10 条
+    per_page = 10
+
+    # 使用 paginate 代替 all()
+    pagination = Article.query.order_by(Article.published.desc()).paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False  # 如果 page 超出范围，返回空列表而不是 404
+    )
+
+    # pagination.items 是当前页的文章列表
+    articles = pagination.items
+
+    return render_template('articles.html',
+                           articles=articles,
+                           pagination=pagination)
 # 显示所有订阅源
 @main_bp.route('/feeds')
 def feeds():
@@ -67,11 +84,42 @@ def delete_feed(feed_id):
 @main_bp.route('/feed/<int:feed_id>')
 def feed_articles(feed_id):
     feed = Feed.query.get_or_404(feed_id)
-    articles = feed.articles.order_by(Article.published.desc()).all()
-    return render_template('articles.html', articles=articles, feed=feed)
+    page = request.args.get('page', 1, type=int)
+    per_page = 10
+    pagination = feed.articles.order_by(Article.published.desc()).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+    articles = pagination.items
+    return render_template('articles.html', feed=feed, articles=articles, pagination=pagination)
+
 
 @main_bp.route('/articles')
 def articles():
     # 文章列表
-    articles = Article.query.order_by(Article.published.desc()).all()
-    return render_template('articles.html', articles=articles)
+    # 获取当前页码，默认为 1
+    page = request.args.get('page', 1, type=int)
+    # 每页显示 10 条
+    per_page = 10
+
+    # 使用 paginate 代替 all()
+    pagination = Article.query.order_by(Article.published.desc()).paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False  # 如果 page 超出范围，返回空列表而不是 404
+    )
+
+    # pagination.items 是当前页的文章列表
+    articles = pagination.items
+
+    return render_template('articles.html',
+                           articles=articles,
+                           pagination=pagination)
+
+@main_bp.route('/article/<int:article_id>')
+def article_detail(article_id):
+    article = Article.query.get_or_404(article_id)
+    # 标记为已读（可选）
+    if not article.is_read:
+        article.is_read = True
+        db.session.commit()
+    return render_template('article_detail.html', article=article)

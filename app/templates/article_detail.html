@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p class="text-muted">
+        {{ article.published.strftime('%Y-%m-%d %H:%M') if article.published else '时间未知' }}
+        · 来源: <a href="{{ url_for('main.feed_articles', feed_id=article.feed.id) }}">{{ article.feed.name }}</a>
+    </p>
+    <div class="article-content">
+        {{ article.summary|safe }}  <!-- 注意：这里要用 safe，因为是要显示原始 HTML -->
+    </div>
+    <hr>
+    <a href="{{ article.link }}" target="_blank" class="btn btn-outline-primary">查看原文</a>
+    <a href="{{ url_for('main.articles') }}" class="btn btn-outline-secondary">返回列表</a>
+{% endblock %}
