@@ -31,6 +31,7 @@
    git clone https://github.com/EEEEntelecheia/my-rss-reader.git
    
 2. **创建虚拟环境并激活**
+   ```bash
    cd my-rss-reader
    python -m venv venv
    # Windows
@@ -39,7 +40,9 @@
    source venv/bin/activate
 
 3. **安装依赖**
+   ```bash
    pip install -r requirements.txt
    
 4. **运行应用**
+   ```bash
    python run.py
