@@ -31,6 +31,6 @@ def create_app(config_object=None):
 
     # 创建数据库表（可选，根据需求）
     with app.app_context():
-        db.create_all()
+        db.create_all()      # 首次运行时会根据模型创建表
 
     return app

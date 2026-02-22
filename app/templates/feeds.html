@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}我的订阅源{% endblock %}
+
+{% block content %}
+<h2>我的订阅源</h2>
+<a href="{{ url_for('main.add_feed') }}" class="btn btn-primary mb-3">+ 添加订阅源</a>
+
+{% if feeds %}
+    <ul class="list-group">
+    {% for feed in feeds %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ feed.name }}</strong><br>
+                <small class="text-muted">{{ feed.url }}</small>
+            </div>
+            <div>
+                <span class="badge bg-secondary">{{ feed.articles.count() }} 篇文章</span>
+                <a href="{{ url_for('main.feed_articles', feed_id=feed.id) }}" class="btn btn-sm btn-info">查看</a>
+                <a href="{{ url_for('main.delete_feed', feed_id=feed.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('确定删除吗？')">删除</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>暂无订阅源，快去添加吧！</p>
+{% endif %}
+{% endblock %}

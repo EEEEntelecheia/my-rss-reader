@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}文章列表{% endblock %}
+
+{% block content %}
+    <h2>最新文章</h2>
+    {% for article in articles %}
+        <div class="article">
+            <div class="article-title">
+                <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
+            </div>
+            <div class="article-meta">
+                {{ article.published.strftime('%Y-%m-%d %H:%M') if article.published else '时间未知' }}
+                · 来自: {{ article.feed.name if article.feed else '未知来源' }}
+                {% if not article.is_read %} · <span style="color: green;">新</span>{% endif %}
+            </div>
+            <div class="article-summary">
+                {{ article.summary|safe if article.summary else '暂无摘要' }}
+            </div>
+        </div>
+    {% else %}
+        <p>暂无文章，请先添加订阅源。</p>
+    {% endfor %}
+{% endblock %}

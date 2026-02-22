@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}我的 RSS 阅读器{% endblock %}</title>
+    <!-- 先用最简单的样式，后面再换好看的 -->
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .article { border-bottom: 1px solid #eee; padding: 10px 0; }
+        .article-title { font-size: 1.2em; font-weight: bold; }
+        .article-meta { color: #666; font-size: 0.9em; }
+        a { text-decoration: none; color: #0066cc; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📰 我的 RSS 阅读器</h1>
+        <nav>
+            <a href="{{ url_for('main.index') }}">首页</a> |
+            <a href="{{ url_for('main.articles') }}">所有文章</a> |
+            <a href="{{ url_for('main.feeds') }}">我的订阅源</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
