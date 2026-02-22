@@ -17,6 +17,7 @@
                 <div>
                     <span class="badge bg-secondary">{{ feed.articles.count() }} 篇文章</span>
                     <a href="{{ url_for('main.feed_articles', feed_id=feed.id) }}" class="btn btn-sm btn-info">查看</a>
+                    <a href="{{ url_for('main.edit_feed', feed_id=feed.id) }}" class="btn btn-sm btn-warning">编辑</a>
                     <a href="{{ url_for('main.delete_feed', feed_id=feed.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('确定删除吗？')">删除</a>
                 </div>
             </li>

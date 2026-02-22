@@ -79,6 +79,25 @@ def delete_feed(feed_id):
     flash('订阅源已删除')
     return redirect(url_for('main.index'))
 
+@main_bp.route('/feed/edit/<int:feed_id>',methods=['GET', 'POST'])
+def edit_feed(feed_id):
+    feed = Feed.query.get_or_404(feed_id)
+    if request.method == 'POST':
+        # 获取表单数据
+        new_name = request.form.get('name')
+        new_url = request.form.get('url')
+        if not new_name or not new_url:
+            flash('名称和URL都不能为空')
+            return render_template('edit_feed.html', feed=feed)
+        # 更新
+        feed.name = new_name
+        feed.url = new_url
+        db.session.commit()
+        flash('订阅源更新成功')
+        return redirect(url_for('main.index'))
+    # GET 请求：显示编辑表单
+    return render_template('edit_feed.html', feed=feed)
+
 
 # 查看某个订阅源的文章（可选）
 @main_bp.route('/feed/<int:feed_id>')
