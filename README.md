@@ -1,4 +1,4 @@
-# 📰 RSS 阅读器 - 个人版
+# 📰 我的RSS阅读器
 
 一个基于 Flask 的简易 RSS 阅读器，支持订阅源管理、定时抓取、文章列表展示、按源筛选等功能。
 
@@ -17,6 +17,11 @@
 - **前端**：HTML5, CSS3, Bootstrap 5 (可选)
 - **数据库**：SQLite（开发），可轻松切换至 MySQL/PostgreSQL
 - **工具**：feedparser（解析 RSS）, BeautifulSoup（清洗 HTML）
+  
+## 📸 界面预览
+
+![文章列表](screenshots/articles.png)
+![订阅源管理](screenshots/feeds.png)
 
 ## 🚀 快速开始
 
