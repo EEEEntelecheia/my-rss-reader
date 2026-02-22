@@ -51,6 +51,11 @@ def fetch_all_feeds():
     """
     抓取所有订阅源（用于定时任务）
     """
+    """抓取所有订阅源的最新文章"""
     feeds = Feed.query.all()
     for feed in feeds:
-        fetch_feed(feed.url)
+        try:
+            fetch_feed(feed.url)
+            print(f"已抓取: {feed.name}")
+        except Exception as e:
+            print(f"抓取失败 {feed.name}: {e}")
