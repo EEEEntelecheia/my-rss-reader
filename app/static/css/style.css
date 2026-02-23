@@ -1,0 +1,149 @@
+body { font-family: sans-serif; max-width: 90%; margin: 0 auto; padding: 20px; }
+.article { border-bottom: 1px solid #eee; padding: 10px 0; }
+.article-title { font-size: 1.2em; font-weight: bold; }
+.article-meta { color: #666; font-size: 0.9em; }
+a { text-decoration: none; color: #0066cc; }
+a:hover { text-decoration: underline; }
+/* 让图片最大不超过父容器的宽度，高度自适应 */
+.article-summary img,
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* 避免图片底部出现多余空隙 */
+}
+/* 限制卡片内所有图片的最大宽度不超过父容器 */
+.card img {
+max-width: 100%;
+height: auto;
+display: block;       /* 避免图片底部产生多余空隙 */
+border-radius: 4px;   /* 可选，加点圆角更好看 */
+}
+
+.card-body {
+background:rgba(255, 255, 255, 0.2);
+}
+
+.btn-group {
+display: flex;
+flex-wrap: wrap;
+gap: 5px;  /* 按钮间距 */
+}
+@media (max-width: 576px) {
+    .card {
+    margin: 10px 0;
+    }
+    .btn-group {
+    flex-direction: column;  /* 按钮竖直排列 */
+    }
+    .btn-group .btn {
+    width: 100%;  /* 按钮占满宽度 */
+    }
+}
+
+        /* 侧边导航菜单 */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* 侧栏链接 */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* 活动的/当前的链接 */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* 鼠标悬停时的链接样式 */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* 页面内容。margin-left 属性的值应与侧边栏的 width 属性的值相匹配。 */
+/*div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 80%;
+}*/
+
+/* 在宽度小于 700 像素的屏幕上，将侧边栏变为顶部栏 */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* 在宽度小于 400 像素的屏幕上，将栏以垂直方式显示，而不是水平方式 */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+
+/* 为顶部导航添加背景色 */
+.topnav {
+background-color: #f1f1f1;
+overflow: hidden;
+/*position:fixed;*/
+}
+
+/* 设置导航栏中链接的样式 */
+.topnav a {
+float: left;
+color: #000;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* 更改鼠标悬停时链接的颜色 */
+.topnav a:hover {
+background-color: #ddd;
+color: black;
+}
+
+/* 为活动/当前链接添加颜色 */
+
+.topnav a.active {
+background-color: #333;
+color: white;
+}
+
+/* 在导航栏内部创建一个右对齐的（分割）链接 */
+.topnav a.split {
+  float: right;
+  background-color: #333;
+  color: white;
+}
+
+#btn_add {
+background-color:#333;
+}
+#btn_view {
+background-color:#333;
+}
+#btn_add_submit {
+background-color:#333;
+}
+#btn_edit {
+background-color:#333;
+}

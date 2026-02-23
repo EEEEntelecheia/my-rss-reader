@@ -1,14 +1,17 @@
 # config.py
 import os
 
+
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key'
+    SECRET_KEY = os.environ.get("SECRET_KEY") or "dev-secret-key"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///rss_dev.db'
+    SQLALCHEMY_DATABASE_URI = "sqlite:///rss_dev.db"
+
 
 class ProdConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///rss_prod.db'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or "sqlite:///rss_prod.db"

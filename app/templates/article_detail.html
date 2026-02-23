@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ article.title }}{% endblock %}
-
+{% block current_page %}文章详情{% endblock %}
 {% block content %}
     <h1>{{ article.title }}</h1>
     <p class="text-muted">
@@ -12,6 +12,6 @@
         {{ article.summary|safe }}  <!-- 注意：这里要用 safe，因为是要显示原始 HTML -->
     </div>
     <hr>
-    <a href="{{ article.link }}" target="_blank" class="btn btn-outline-primary">查看原文</a>
+    <a href="{{ article.link }}" target="_blank" class="btn btn-outline-primary" id="btn_view">查看原文</a>
     <a href="{{ url_for('main.articles') }}" class="btn btn-outline-secondary">返回列表</a>
 {% endblock %}

@@ -4,62 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}我的 RSS 阅读器{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+
     <!-- 先用最简单的样式，后面再换好看的 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .article { border-bottom: 1px solid #eee; padding: 10px 0; }
-        .article-title { font-size: 1.2em; font-weight: bold; }
-        .article-meta { color: #666; font-size: 0.9em; }
-        a { text-decoration: none; color: #0066cc; }
-        a:hover { text-decoration: underline; }
-        /* 让图片最大不超过父容器的宽度，高度自适应 */
-        .article-summary img,
-        .article-content img {
-            max-width: 100%;
-            height: auto;
-            display: block; /* 避免图片底部出现多余空隙 */
-        }
-        /* 限制卡片内所有图片的最大宽度不超过父容器 */
-        .card img {
-        max-width: 100%;
-        height: auto;
-        display: block;       /* 避免图片底部产生多余空隙 */
-        border-radius: 4px;   /* 可选，加点圆角更好看 */
-        }
-        html {
-            overflow-y: scroll;
-        }
-        .btn-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;  /* 按钮间距 */
-        }
-        @media (max-width: 576px) {
-            .card {
-            margin: 10px 0;
-            }
-            .btn-group {
-            flex-direction: column;  /* 按钮竖直排列 */
-            }
-            .btn-group .btn {
-            width: 100%;  /* 按钮占满宽度 */
-            }
+
+<!--.sid-and-con{-->
+<!--margin-top:60px; /* 等于导航栏高度 */-->
+<!-- height:100% ;-->
+<!--  padding-top: 10px; /* 等于导航栏高度 */-->
+<!--  overflow-y: scroll;-->
+<!--}-->
+
+html{
+overflow-y: scroll;
+}
+.content{
+<!--overflow-y: scroll;-->
 }
     </style>
 </head>
 <body>
-    <header>
-        <h1>📰 我的 RSS 阅读器</h1>
-        <nav>
-            <a href="{{ url_for('main.index') }}">首页</a> |
-<!--            <a href="{{ url_for('main.articles') }}">所有文章</a> |-->
-            <a href="{{ url_for('main.feeds') }}">订阅源管理</a>
-        </nav>
-    </header>
+<!--    <div class="topnav">-->
+<!--         <header>-->
+<!--              <h2>📰 我的 RSS 阅读器</h2>-->
+<!--        </header>-->
+<!--    </div>-->
 
-    <main>
+
+<div class="topnav">
+  <a href="#" class="active">📰 我的 RSS 阅读器</a>
+  <a class href="{{ url_for('main.index') }}">首页</a>
+  <a href="{{ url_for('main.feeds') }}">订阅管理</a>
+
+  <a href="#" class="split">{% block current_page %}首页{% endblock %}</a>
+</div>
+
+    <div class="sid-and-con">
+    <!-- 侧栏 -->
+<!--    <div class="sidebar">-->
+<!--      <a class="active" href="{{ url_for('main.index') }}">首页</a>-->
+<!--      <a href="{{ url_for('main.feeds') }}">订阅源管理</a>-->
+<!--      <a href="#contact">Contact</a>-->
+<!--      <a href="#about">About</a>-->
+<!--    </div>-->
+
+    <!-- Page content -->
+
+    <div class="content">
+      <main>
         {% block content %}{% endblock %}
     </main>
+    </div>
+
+    </div>
+
 </body>
 </html>

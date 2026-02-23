@@ -26,19 +26,19 @@ def fetch_feed(feed_url):
 
         # 解析发布时间（不同 RSS 格式字段不同，常见有 published、pubDate、updated）
         published = None
-        if hasattr(entry, 'published_parsed') and entry.published_parsed:
+        if hasattr(entry, "published_parsed") and entry.published_parsed:
             published = datetime(*entry.published_parsed[:6])
-        elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
+        elif hasattr(entry, "updated_parsed") and entry.updated_parsed:
             published = datetime(*entry.updated_parsed[:6])
 
         # 创建新文章
         article = Article(
-            title=entry.get('title', '无标题'),
+            title=entry.get("title", "无标题"),
             link=entry.link,
             published=published,
-            summary=entry.get('summary', ''),
+            summary=entry.get("summary", ""),
             is_read=False,
-            feed_id=feed.id
+            feed_id=feed.id,
         )
         db.session.add(article)
         new_articles.append(article)
