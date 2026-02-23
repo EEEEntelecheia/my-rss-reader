@@ -19,8 +19,7 @@
   
 ## 📸 界面预览
 
-![文章列表](screenshots/articles.png)
-![订阅源管理](screenshots/feeds.png)
+![主页](screenshots/index.png)
 
 ## 🚀 快速开始
 
@@ -54,7 +53,6 @@
 ## 🔮 未来计划
 - 支持全文搜索
 - OPML 导入/导出
-- 多用户支持
 - 暗色模式
 
 ## 🤝 贡献
